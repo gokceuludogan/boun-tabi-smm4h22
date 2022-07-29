@@ -1,0 +1,5 @@
+{
+	"input_dir": "predictions_test",
+	"predictions": ["assert_ade_ri_1", "assert_ade_sr_1", "assert_ade_swnet_1", "assert_over_under_1", "assert_over_under_2_1"],
+	"output": "assert_ensemble_rswoo"
+}

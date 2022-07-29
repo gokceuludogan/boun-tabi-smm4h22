@@ -1,0 +1,5 @@
+{
+	"input_dir": "predictions_test",
+	"predictions": ["ner_prompt1", "ner_prompt2", "ner_prompt3"],
+	"output": "ner_ensemble_prompt"
+}
