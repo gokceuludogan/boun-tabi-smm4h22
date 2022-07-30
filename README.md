@@ -26,7 +26,7 @@ After the required data sets are obtained, models can be trained with:
 python train.py <task_prefix> <task_name> <input_data_dir> <model_output_dir>
 ```
 
-where `<task_prefix` is `assert_ade` or `ner_ade` and `task_name` is either `smm4h_task1` for ADE classification of `smm4h_task2` for ADE extraction. 
+where `<task_prefix` is `assert_ade` or `ner_ade` and `task_name` is either `smm4h_task1` for ADE classification or `smm4h_task2` for ADE extraction. 
 
 ## Ensemble
 
