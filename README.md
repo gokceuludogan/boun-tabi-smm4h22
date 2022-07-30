@@ -1,6 +1,6 @@
 # BOUN-TABI@SMM4H'22: Text-to-Text Adverse Drug Event Extraction with Data Balancing and Prompting
 
-This repository contains the implementation of the systems developed for the the Social Media Mining for Health (SMM4H) 2022 Shared Task. We developed two separate systems for detecting adverse drug events (ADEs) in English tweets (Task 1a) and extracting ADE spans in such tweets (Task 1b). Our models rely on the T5 model and formulation of these tasks as sequence-to-sequence problems. To address the class imbalance, we used oversampling/undersampling on both tasks. For the ADE extraction task, we explored prompting to further benefit from the T5 model and its formulation. We built an ensemble model, which combines a model trained on oversampling/undersampling and another one trained with prompting. 
+This repository contains the implementation of the systems developed for the Social Media Mining for Health (SMM4H) 2022 Shared Task. We developed two separate systems for detecting adverse drug events (ADEs) in English tweets (Task 1a) and extracting ADE spans in such tweets (Task 1b). Our models rely on the T5 model and formulation of these tasks as sequence-to-sequence problems. To address the class imbalance, we used oversampling/undersampling on both tasks. For the ADE extraction task, we explored prompting to further benefit from the T5 model and its formulation. We built an ensemble model, which combines a model trained on oversampling/undersampling and another one trained with prompting. 
 
 ## Dataset
 
