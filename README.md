@@ -2,10 +2,47 @@
 
 This repository contains the implementation of the systems developed for the Social Media Mining for Health (SMM4H) 2022 Shared Task. We developed two separate systems for detecting adverse drug events (ADEs) in English tweets (Task 1a) and extracting ADE spans in such tweets (Task 1b). Our models rely on the T5 model and formulation of these tasks as sequence-to-sequence problems. To address the class imbalance, we used oversampling/undersampling on both tasks. For the ADE extraction task, we explored prompting to further benefit from the T5 model and its formulation. We built an ensemble model, which combines a model trained on oversampling/undersampling and another one trained with prompting. 
 
+## Quick Usage
+
+Our best performing models are available at Hugging Face! 
+
+| **Model**                                                                               | **Description**                                                              |
+|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| [t2t-assert-ade-balanced](https://huggingface.co/yirmibesogluz/t2t-assert-ade-balanced) | ADE identification model trained with over- and undersampled (balanced) data |
+| [t2t-ner-ade-balanced](https://huggingface.co/yirmibesogluz/t2t-ner-ade-balanced)       | ADE extraction model trained with over- and undersampled (balanced) data     |
+| [t2t-adeX-prompt](https://huggingface.co/gokceuludogan/t2t-adeX-prompt)                 | ADE extraction model trained with prompting                                  |
+
+### ADE Identification 
+```python
+from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM
+tokenizer = AutoTokenizer.from_pretrained("yirmibesogluz/t2t-assert-ade-balanced")
+model = AutoModelForSeq2SeqLM.from_pretrained("yirmibesogluz/t2t-assert-ade-balanced")
+predictor = pipeline("text2text-generation", model=model, tokenizer=tokenizer)
+predictor("assert ade: joints killing me now i have gone back up on the lamotrigine. sick of side effects. sick of meds. want my own self back. knackered today")
+```
+
+### ADE Extraction 
+
+#### With Balancing
+```python
+from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM
+tokenizer = AutoTokenizer.from_pretrained("yirmibesogluz/t2t-ner-ade-balanced")
+model = AutoModelForSeq2SeqLM.from_pretrained("yirmibesogluz/t2t-ner-ade-balanced")
+predictor = pipeline("text2text-generation", model=model, tokenizer=tokenizer)
+predictor("ner ade: i'm so irritable when my vyvanse wears off")
+```
+#### With Prompting
+
+```python 
+from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM
+tokenizer = AutoTokenizer.from_pretrained("gokceuludogan/t2t-adeX-prompt")
+model = AutoModelForSeq2SeqLM.from_pretrained("gokceuludogan/t2t-adeX-prompt")
+predictor = pipeline("text2text-generation", model=model, tokenizer=tokenizer)
+predictor("Did the patient suffer from a side effect?: weird thing about paxil: feeling fully energized and feeling completely tired at the same time")
+```
 ## Dataset
 
-The dataset was provided by the organizers of the shared task and not publicly available. Once you obtained the data by contacting the organizers, you may run the following script to preprocess it:
-
+The dataset was provided by the organizers of the shared task and not publicly available. Once you obtained data by contacting the organizers, you may run the following script to preprocess it:
 
 
 ```bash
@@ -38,18 +75,31 @@ python ensemble.py <path-to-config-file>
 
 ## Results
 
-### Task 1a: ADE classification
+### Task 1a: ADE Identification
 
-![1659130206059](result_task1a.png)
+| **Model**    | **Precision** | **Recall** | **F1**    |
+|--------------|---------------|------------|-----------|
+| BOUN-TABI    | **0.688**     | **0.625**  | **0.655** |
+| SMM4H22 Mean | 0.646         | 0.497      | 0.562     |
+
 
 ### Task 1b: ADE Extraction
 
-![1659130253964](result_task1b.png)
+| **Model**    | **Partial Precision** | **Partial Recall** | **Partial F1** | **Strict Precision** | **Strict Recall** | **Strict F1** |
+|--------------|-----------------------|--------------------|----------------|----------------------|-------------------|---------------|
+| BOUN-TABI    | 0.507                 | **0.549**          | 0.527          | **0.384**            | **0.412**         | **0.398**     |
+| SMM4H22-Mean | **0.539**             | 0.517              | 0.527          | 0.344                | 0.339             | 0.341         |
+
 
 ### Citation
 
 ```
-
+@inproceedings{uludogan-gokce-yirmibesoglu-zeynep-2022-boun-tabi-smm4h22,
+    title = "{BOUN}-{TABI}@{SMM4H}'22: Text-to-{T}ext {A}dverse {D}rug {E}vent {E}xtraction with {D}ata {B}alancing and {P}rompting",
+    author = "Uludo{\u{g}}an, G{\"{o}}k{\c{c}}e  and Yirmibe{\c{s}}o{\u{g}}lu, Zeynep",
+    booktitle = "Proceedings of the Seventh Social Media Mining for Health ({\#}SMM4H) Workshop and Shared Task",
+    year = "2022",
+}
 ```
 
 ### Reference
