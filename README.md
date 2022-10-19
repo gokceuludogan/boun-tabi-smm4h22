@@ -94,11 +94,17 @@ python ensemble.py <path-to-config-file>
 ### Citation
 
 ```
-@inproceedings{uludogan-gokce-yirmibesoglu-zeynep-2022-boun-tabi-smm4h22,
-    title = "{BOUN}-{TABI}@{SMM4H}'22: Text-to-{T}ext {A}dverse {D}rug {E}vent {E}xtraction with {D}ata {B}alancing and {P}rompting",
-    author = "Uludo{\u{g}}an, G{\"{o}}k{\c{c}}e  and Yirmibe{\c{s}}o{\u{g}}lu, Zeynep",
-    booktitle = "Proceedings of the Seventh Social Media Mining for Health ({\#}SMM4H) Workshop and Shared Task",
+@inproceedings{uludogan-yirmibesoglu-2022-boun,
+    title = "{BOUN}-{TABI}@{SMM}4{H}{'}22: Text-to-Text Adverse Drug Event Extraction with Data Balancing and Prompting",
+    author = {Uludo{\u{g}}an, G{\"o}k{\c{c}}e  and
+      Yirmibe{\c{s}}o{\u{g}}lu, Zeynep},
+    booktitle = "Proceedings of The Seventh Workshop on Social Media Mining for Health Applications, Workshop {\&} Shared Task",
+    month = oct,
     year = "2022",
+    address = "Gyeongju, Republic of Korea",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.smm4h-1.9",
+    pages = "31--34",
 }
 ```
 
